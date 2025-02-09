@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Invitation;
+use App\Models\EventInvitation;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -18,7 +18,7 @@ class InvitationController extends Controller
         ]);
 
         // Create the invitation
-        $invitation = Invitation::create([
+        $invitation = EventInvitation::create([
             'event_id' => $request->event_id,
             'user_id' => $request->user_id,
             'status' => 'pending', // default status, you can change this

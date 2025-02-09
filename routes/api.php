@@ -17,12 +17,9 @@ use App\Http\Controllers\AttendanceController;
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 
-Route::middleware('auth:sanctum')->group(function () {
+// Route::middleware('auth:sanctum')->group(function () {
     Route::post('/invite', [InvitationController::class, 'store']);
     Route::post('/attendance', [AttendanceController::class, 'markAttendance']);
-});
-
-Route::middleware('auth:sanctum')->group(function () {
     Route::post('/events', [EventController::class, 'store']);
     Route::get('/events', [EventController::class, 'index']);
-});
+// });
