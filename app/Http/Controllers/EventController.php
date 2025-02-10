@@ -9,7 +9,7 @@ class EventController extends Controller
 {
     public function store(Request $request)
     {
-        // Validate the incoming request data
+
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -18,13 +18,12 @@ class EventController extends Controller
             'created_by' => 'nullable|exists:users,id',
         ]);
 
-        // Create the event and associate it with the authenticated user
         $event = Event::create([
             'name' => $validatedData['name'],
             'description' => $validatedData['description'],
             'start_time' => $validatedData['start_time'],
             'end_time' => $validatedData['end_time'],
-            'created_by' => $validatedData['created_by'],  // Ensure the authenticated user's ID is used
+            'created_by' => $validatedData['created_by'],
         ]);
 
         return response()->json($event, 201);

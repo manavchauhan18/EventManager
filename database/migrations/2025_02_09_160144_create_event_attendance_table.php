@@ -10,13 +10,16 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up() {
-        Schema::create('event_attendance', function (Blueprint $table) {
+        Schema::create('event_attendances', function (Blueprint $table) {
             $table->id();
             $table->foreignId('invitation_id')->constrained('event_invitations')->onDelete('cascade');
+            $table->foreignId('event_id')->constrained('events')->onDelete('cascade');
             $table->enum('status', ['present', 'absent'])->default('absent');
-            $table->timestamp('timestamp')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
+
+
 
 
     /**
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('event_attendance');
+        Schema::dropIfExists('event_attendances');
     }
 };
